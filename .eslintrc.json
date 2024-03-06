@@ -1,0 +1,52 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "ignorePatterns": ["node_modules/", "dist/", "build/", "**/*test.ts"],
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "indent": ["error", 4],
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "no-undef": "off",
+    "object-curly-newline": [
+      "error",
+      {
+        "minProperties": 4,
+        "multiline": true,
+        "consistent": true
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "ignoreComments": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true
+      }
+    ],
+    "max-lines": [
+      "error",
+      {
+        "max": 150,
+        "skipBlankLines": true,
+        "skipComments": true
+      }
+    ],
+    "max-statements": [
+      "error",
+      {
+        "max": 15
+      }
+    ]
+  }
+}
