@@ -2,6 +2,8 @@ FROM node:20
 
 ARG GITHUB_TOKEN
 
+ENV PORT="3000"
+
 WORKDIR /app
 
 COPY . .
