@@ -3,3 +3,6 @@ dist/
 package-lock.json
 yarn.lock
 yarn-error.log
+.env
+
+microservices.config.json
