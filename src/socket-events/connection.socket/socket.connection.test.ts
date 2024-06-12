@@ -12,7 +12,7 @@ describe("Connection Behaveior", () => {
             const testUser1 = await createTestUser();
 
             const token1 = sign({ ID: testUser1._id }, process.env.SECRER_KEY || "secret");
-            const socket1 = io("http://localhost:3001", { auth: { token: token1 } });
+            const socket1 = io("http://localhost:3005", { auth: { token: token1 } });
 
             socket1.on(ClientEvents.Connect, () => {
                 socket1.on(ClientEvents.ConnectedUsers, async (users: WantsToPlay[]) => {
@@ -37,7 +37,7 @@ describe("Connection Behaveior", () => {
             const testUser2 = await createTestUser();
 
             const token1 = sign({ ID: testUser1._id }, process.env.SECRER_KEY || "secret");
-            const socket1 = io("http://localhost:3001", { auth: { token: token1 } });
+            const socket1 = io("http://localhost:3005", { auth: { token: token1 } });
 
             socket1.on(ClientEvents.UserConnected, async (user: WantsToPlay) => {
                 expect(user.user._id).toBe(testUser2._id);
@@ -52,7 +52,7 @@ describe("Connection Behaveior", () => {
             });
 
             const token2 = sign({ ID: testUser2._id }, process.env.SECRER_KEY || "secret");
-            const socket2 = io("http://localhost:3001", { auth: { token: token2 } });
+            const socket2 = io("http://localhost:3005", { auth: { token: token2 } });
         };
 
         mainTest();
@@ -64,10 +64,10 @@ describe("Connection Behaveior", () => {
             const testUser2 = await createTestUser();
 
             const token1 = sign({ ID: testUser1._id }, process.env.SECRER_KEY || "secret");
-            const socket1 = io("http://localhost:3001", { auth: { token: token1 } });
+            const socket1 = io("http://localhost:3005", { auth: { token: token1 } });
 
             const token2 = sign({ ID: testUser2._id }, process.env.SECRER_KEY || "secret");
-            const socket2 = io("http://localhost:3001", { auth: { token: token2 } });
+            const socket2 = io("http://localhost:3005", { auth: { token: token2 } });
 
             socket1.on(ClientEvents.UserConnected, async (user: WantsToPlay) => {
                 expect(user.user._id).toBe(testUser2._id);
@@ -95,10 +95,10 @@ describe("Connection Behaveior", () => {
             const testUser2 = await createTestUser();
 
             const token1 = sign({ ID: testUser1._id }, process.env.SECRER_KEY || "secret");
-            const socket1 = io("http://localhost:3001", { auth: { token: token1 } });
+            const socket1 = io("http://localhost:3005", { auth: { token: token1 } });
 
             const token2 = sign({ ID: testUser2._id }, process.env.SECRER_KEY || "secret");
-            const socket2 = io("http://localhost:3001", { auth: { token: token2 } });
+            const socket2 = io("http://localhost:3005", { auth: { token: token2 } });
 
             socket1.on(ClientEvents.Connect, async () => {
                 wantsToPlay = await databaseService.getPlayersWhoWantToPlay();

@@ -7,7 +7,7 @@ import { ClientEvents } from "@panda-chess/pdc-core";
 describe("Auth Middleware", () => {
     it("should return Authentication Error", (done) => {
         const mainTest = async () => {
-            const socket = io("http://localhost:3001");
+            const socket = io("http://localhost:3005");
 
             socket.on(ClientEvents.ConnectError, (err: Error) => {
                 expect(err.message).toBe("Authentication error");
@@ -21,8 +21,8 @@ describe("Auth Middleware", () => {
 
     it("should connect", (done) => {
         createTestUser().then((testUser) => {
-            const token = sign({ ID: testUser._id }, process.env.SECRER_KEY || "secret");
-            const socket = io("http://localhost:3001", { auth: { token: token } });
+            const token = sign({ ID: testUser._id }, process.env.SECRET_KEY || "secret");
+            const socket = io("http://localhost:3005", { auth: { token: token } });
 
             socket.on(ClientEvents.Connect, async () => {
                 expect(socket.connected).toBe(true);

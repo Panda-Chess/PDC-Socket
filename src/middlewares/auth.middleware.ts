@@ -6,7 +6,7 @@ export const authMiddleware = (socket: Socket, next: (err?: ExtendedError | unde
     const auth = socket.handshake.auth;
     if (auth && auth.token) {
         try {
-            const decoded = (verify(auth.token, process.env.SECRER_KEY || "secret") as JwtPayload);
+            const decoded = (verify(auth.token, process.env.SECRET_KEY || "secret") as JwtPayload);
             socket.handshake.auth["user"] = decoded.ID;
             if (decoded) {
                 return next();

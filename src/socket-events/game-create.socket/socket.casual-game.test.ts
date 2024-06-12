@@ -14,10 +14,10 @@ describe("Casual Game", () => {
             const testUser2 = await createTestUser();
 
             const token1 = sign({ ID: testUser1._id }, process.env.SECRER_KEY || "secret");
-            const socket1 = io("http://localhost:3001", { auth: { token: token1 } });
+            const socket1 = io("http://localhost:3005", { auth: { token: token1 } });
 
             const token2 = sign({ ID: testUser2._id }, process.env.SECRER_KEY || "secret");
-            const socket2 = io("http://localhost:3001", { auth: { token: token2 } });
+            const socket2 = io("http://localhost:3005", { auth: { token: token2 } });
 
             socket1.on(ClientEvents.Connect, () => {
                 const gameRequest: GameRequestDto = {
@@ -64,10 +64,10 @@ describe("Casual Game", () => {
             const testUser2 = await createTestUser();
 
             const token1 = sign({ ID: testUser1._id }, process.env.SECRER_KEY || "secret");
-            let socket1 = io("http://localhost:3001", { auth: { token: token1 } });
+            let socket1 = io("http://localhost:3005", { auth: { token: token1 } });
 
             const token2 = sign({ ID: testUser2._id }, process.env.SECRER_KEY || "secret");
-            const socket2 = io("http://localhost:3001", { auth: { token: token2 } });
+            const socket2 = io("http://localhost:3005", { auth: { token: token2 } });
 
             socket1.on(ClientEvents.Connect, () => {
                 socket2.on(ClientEvents.Connect, () => {
@@ -116,7 +116,7 @@ describe("Casual Game", () => {
 
             socket2.on(ClientEvents.OpponentDisconnect, async () => {
                 if (gameWasStarted) {
-                    socket1 = io("http://localhost:3001", { auth: { token: token1 } });
+                    socket1 = io("http://localhost:3005", { auth: { token: token1 } });
                     socket1.on(ClientEvents.Connect, () => {
                         socket1.on(ClientEvents.GameContinueRequest, async (gameRequestDto) => {
                             socket1.emit(ServerEvents.GameContinue, gameRequestDto);

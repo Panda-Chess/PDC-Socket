@@ -14,10 +14,10 @@ describe("Auth Middleware", () => {
             const testUser2 = await createTestUser();
 
             const token1 = sign({ ID: testUser1._id }, process.env.SECRER_KEY || "secret");
-            let socket1 = io("http://localhost:3001", { auth: { token: token1 } });
+            let socket1 = io("http://localhost:3005", { auth: { token: token1 } });
 
             const token2 = sign({ ID: testUser2._id }, process.env.SECRER_KEY || "secret");
-            const socket2 = io("http://localhost:3001", { auth: { token: token2 } });
+            const socket2 = io("http://localhost:3005", { auth: { token: token2 } });
 
             socket1.on(ClientEvents.Connect, () => {
                 socket2.on(ClientEvents.Connect, () => {
@@ -72,10 +72,10 @@ describe("Auth Middleware", () => {
             const testUser2 = await createTestUser();
 
             const token1 = sign({ ID: testUser1._id }, process.env.SECRER_KEY || "secret");
-            let socket1 = io("http://localhost:3001", { auth: { token: token1 } });
+            let socket1 = io("http://localhost:3005", { auth: { token: token1 } });
 
             const token2 = sign({ ID: testUser2._id }, process.env.SECRER_KEY || "secret");
-            const socket2 = io("http://localhost:3001", { auth: { token: token2 } });
+            const socket2 = io("http://localhost:3005", { auth: { token: token2 } });
 
             socket1.on(ClientEvents.Connect, () => {
                 socket2.on(ClientEvents.Connect, () => {

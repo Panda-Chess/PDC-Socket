@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: socket-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: socket-service
+  template:
+    metadata:
+      labels:
+        app: socket-service
+    spec:
+      imagePullSecrets:
+        - name: githubtoken
+      containers:
+      - name: socket-service
+        image: ghcr.io/panda-chess/pdc-socket:main
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PORT
+          value: "3000"
+        - name: SECRET
+          value: "secret"
