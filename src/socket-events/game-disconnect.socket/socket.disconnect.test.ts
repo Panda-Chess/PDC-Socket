@@ -53,12 +53,11 @@ describe("Auth Middleware", () => {
                 expect(currentGame?.users.find(x => x.user._id === testUser1._id)?.status).toBe(UserStatus.offline);
 
                 socket2.disconnect();
+            });
 
-                await sleep(1000);
-
+            socket2.on(ClientEvents.Disconnect, async () => {
                 databaseService.deleteUser(testUser1._id!);
                 databaseService.deleteUser(testUser2._id!);
-                databaseService.deleteGame(currentGame!._id!);
                 done();
             });
         };
