@@ -7,7 +7,7 @@ import { ServerConnectionEvent, ServerEvents } from "@panda-chess/pdc-core";
 export const startServer = (serverPort: number) => {
     const httpServer = createServer();
 
-    const io = new Server(httpServer, { cors: { origin: "*" } });
+    const io = new Server(httpServer, { path: "/socket", cors: { origin: "*" } });
 
     io.use(authMiddleware);
 
