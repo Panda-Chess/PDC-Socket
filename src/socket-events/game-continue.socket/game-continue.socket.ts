@@ -1,5 +1,5 @@
 import {
-    ClientEvents, GameRequestDto, ServerEvents, UserStatus 
+    ClientEvents, GameRequestDto, ServerEvents, UserStatus
 } from "@panda-chess/pdc-core";
 import { databaseService } from "@panda-chess/pdc-microservices-agregator";
 import { Socket } from "socket.io";
@@ -7,6 +7,8 @@ import { gameDisconnect } from "../game-disconnect.socket";
 import { gameMove } from "../game-move.socket";
 
 export const gameContinue = async (socket: Socket, gameRequest: GameRequestDto) => {
+    console.log("Game continue: ", gameRequest);
+
     const currentMatch = await databaseService.getGameByUsers(gameRequest.initiator._id!, gameRequest.receptor._id!);
 
     if (!currentMatch)

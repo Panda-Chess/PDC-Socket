@@ -4,6 +4,8 @@ import { databaseService } from "@panda-chess/pdc-microservices-agregator";
 import { Socket } from "socket.io";
 
 export const disconnect = async (socket: Socket) => {
+    console.log("Socket disconnected: ", socket.id);
+
     const userId = socket.handshake.auth["user"];
 
     const game = await databaseService.getGameByUsers(userId);

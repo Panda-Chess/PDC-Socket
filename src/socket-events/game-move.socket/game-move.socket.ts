@@ -4,6 +4,8 @@ import { analyseService, databaseService, validatorService } from "@panda-chess/
 import { Socket } from "socket.io";
 
 export const gameMove = async (socket: Socket, initiator: User, receptor: User, move: Move) => {
+    console.log("Game move: ", move);
+
     const game = await databaseService.getGameByUsers(initiator._id!, receptor._id!);
 
     if (game?.gameType === GameTypes.competitive) {

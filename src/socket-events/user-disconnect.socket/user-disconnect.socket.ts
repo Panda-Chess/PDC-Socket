@@ -3,6 +3,8 @@ import { databaseService } from "@panda-chess/pdc-microservices-agregator";
 import { Socket } from "socket.io";
 
 export const userDisconnect = async (user: User, socket: Socket) => {
+    console.log("User disconnected: ", user);
+
     await databaseService.playerDoesNotWantToPlay(user._id!);
 
     await databaseService.updateUser({

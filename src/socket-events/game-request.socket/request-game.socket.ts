@@ -4,6 +4,8 @@ import { databaseService } from "@panda-chess/pdc-microservices-agregator";
 import { Socket } from "socket.io";
 
 export const requestGame = async (socket: Socket, initiator: User, receptor: User, gameType: GameTypes) => {
+    console.log("Game request: ", initiator, receptor);
+
     const dbInitiator = await databaseService.getUserById(initiator._id!);
     const dbReceptor = await databaseService.getUserById(receptor._id!);
 

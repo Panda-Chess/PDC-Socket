@@ -6,6 +6,8 @@ import {
 import { GameTypes, User } from "@panda-chess/pdc-core/dist/utils";
 
 export const casualGame = async (socket: Socket, initiator: User, receptor: User, gameType: GameTypes) => {
+    console.log("Game create: ", initiator, receptor);
+
     await databaseService.createGame({
         users: [
             {

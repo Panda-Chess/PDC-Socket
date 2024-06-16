@@ -8,6 +8,8 @@ import { GameTypes } from "@panda-chess/pdc-core/dist/utils";
 import { gameContinue } from "../game-continue.socket";
 
 export const connection = async (socket: Socket) => {
+    console.log("Socket connected: ", socket.id);
+
     const userPromise = databaseService.getUserById(socket.handshake.auth["user"]);
 
     socket.on(ServerEvents.Disconnect, userDisconnect(await userPromise, socket));
